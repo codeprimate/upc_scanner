@@ -1,0 +1,15 @@
+README
+====================
+
+The module allows for reading barcode information from images, and fetches extended information from www.upcdatabase.com.
+
+This Ruby module makes use of the following libraries:
+	- The RJB Ruby gem from http://rjb.rubyforge.org/
+	- ZXing Java barcode library from http://code.google.com/p/zxing/
+		The pre-built jars are included for convenience
+		
+Example Usage:
+
+include 'upc_scanner'
+result = UpcScanner::Scanner.read('test/test.gif')
+puts result.inspect
