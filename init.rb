@@ -1,0 +1,1 @@
+require 'upc_scanner'

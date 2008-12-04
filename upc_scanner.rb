@@ -1,5 +1,4 @@
 # (c)2008 Patrick Morgan and Master Web Design www.masterwebdesign.net  under Apache License 2.0
-
 module UpcScanner
   
   class UpcImageScanner
@@ -7,15 +6,16 @@ module UpcScanner
     # Requires rjb gem and jar files lib/zxing-javase.jar and lib/zxing.jar
 
     ## Example Usage:
-    # u = UpcImageScanner.new('lib/')
+    # u = UpcImageScanner.new
     # code = u.read('test/02.jpg')
     # puts code
-    
     require 'rubygems'
     require 'rjb'
     
-    def initialize(classpath='lib/')
-      init_java_classes(classpath)
+    Rjb::load("#{File.dirname(__FILE__)}/lib/zxing-javase.jar:#{File.dirname(__FILE__)}/lib/zxing.jar", ['-Djava.awt.headless=true'])
+
+    def initialize
+      init_java_classes
     end
 
     # Read barcode from image file.  Provide filename
@@ -26,8 +26,7 @@ module UpcScanner
   
     private
     
-    def init_java_classes(classpath)
-      Rjb::load("#{classpath}/zxing-javase.jar:#{classpath}/zxing.jar", ['-Djava.awt.headless=true'])
+    def init_java_classes
       @j_bufferedimage = Rjb::import('java.awt.image.BufferedImage')
       @j_imageio = Rjb::import('javax.imageio.ImageIO')
       @j_file = Rjb::import('java.io.File')
@@ -78,7 +77,7 @@ module UpcScanner
   end
 
   class Scanner
-    def self.read(filename, debug=false)
+    def self.read(filename)
       scanner = UpcImageScanner.new
       code = scanner.read(filename)
       return UpcLookup.find(code)
