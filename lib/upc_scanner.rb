@@ -6,8 +6,8 @@ module UpcScanner
     # Requires rjb gem and jar files lib/zxing-javase.jar and lib/zxing.jar
 
     ## Example Usage:
-    # u = UpcImageScanner.new
-    # code = u.read('test/02.jpg')
+    # u = UpcScanner::UpcImageScanner.new
+    # code = u.read('test/test.gif')
     # puts code
     require 'rubygems'
     require 'rjb'
