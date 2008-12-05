@@ -12,7 +12,7 @@ module UpcScanner
     require 'rubygems'
     require 'rjb'
     
-    Rjb::load("#{File.dirname(__FILE__)}/lib/zxing-javase.jar:#{File.dirname(__FILE__)}/lib/zxing.jar", ['-Djava.awt.headless=true'])
+    Rjb::load("#{File.dirname(__FILE__)}/zxing-javase.jar:#{File.dirname(__FILE__)}/zxing.jar", ['-Djava.awt.headless=true'])
 
     def initialize
       init_java_classes
